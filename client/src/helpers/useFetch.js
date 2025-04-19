@@ -9,6 +9,7 @@ function useFetch(url, option = {}, dependencies = []) {
     setLoading(true);
     try {
       const response = await fetch(url, {
+        ...option,
         method: "GET",
         headers: {
           authorization: `Bearer ${JSON.parse(
