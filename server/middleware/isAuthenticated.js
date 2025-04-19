@@ -10,9 +10,9 @@ export const isAuthenticated = async (req, _, next) => {
       ? req.headers["authorization"].split(" ")[1]
       : null;
 
-    if (!token) {
-      return next(handleError(403, "Unauthorized user."));
-    }
+    // if (!token) {
+    //   return next(handleError(403, "Unauthorized user."));
+    // }
     const decoded = jwt.decode(token, process.env.SECRET_KEY);
     if (!decoded) {
       return next(handleError(403, "Unauthorized user."));
