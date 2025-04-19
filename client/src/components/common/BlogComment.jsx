@@ -25,12 +25,7 @@ const BlogComment = ({ blogId }) => {
     data: commentList,
   } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}/api/comment/fetch/${blogId}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-      },
-    },
+    {},
     []
   );
 
