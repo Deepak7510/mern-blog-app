@@ -37,7 +37,6 @@ import slugify from "slugify";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import toast from "react-hot-toast";
 import useFetch from "@/helpers/useFetch";
-import TextEditer from "@/components/common/TextEditer";
 import { Label } from "@/components/ui/label";
 import { Cloud, XIcon } from "lucide-react";
 import BlogTableRow from "@/components/common/BlogTableRow";
@@ -46,6 +45,9 @@ import BlogTableRowLoading from "@/components/common/BlogTableRowLoading";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { blogSchema } from "@/helpers/Validation";
 import Loading2 from "@/components/common/Loading2";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
+import CustomEditor from "@/components/common/TextEditer";
 
 const AdminBlog = () => {
   const { user } = useSelector((state) => state.auth);
@@ -101,11 +103,6 @@ const AdminBlog = () => {
     form.setValue("thumbnail", e.dataTransfer.files[0]);
   }
 
-  function handleEditerData(event, editer) {
-    const data = editer.getData();
-    form.setValue("content", data);
-  }
-
   function resetImage() {
     thumbnailRef.current = "";
     setPriview(null);
@@ -134,7 +131,6 @@ const AdminBlog = () => {
     newFormData.append("content", formData.content);
     newFormData.append("status", formData.status);
 
-    console.log(formData);
     try {
       const url = editId
         ? `${import.meta.env.VITE_BACKEND_URL}/api/blog/update/${editId}`
@@ -291,10 +287,7 @@ const AdminBlog = () => {
                       <FormItem>
                         <FormLabel>Content</FormLabel>
                         <FormControl>
-                          <TextEditer
-                            initialData={field.value}
-                            handleEditerData={handleEditerData}
-                          />
+                          <CustomEditor field={field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -341,7 +334,7 @@ const AdminBlog = () => {
                     className="w-full"
                     type="submit"
                   >
-                    Save Category
+                    Save Blog
                   </Button>
                 </form>
               </Form>
