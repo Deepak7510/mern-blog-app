@@ -92,7 +92,6 @@ export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async ({ userId, formData }) => {
     try {
-      console.log(userId, formData);
       const response = await fetch(
         `${
           import.meta.env.VITE_BACKEND_URL

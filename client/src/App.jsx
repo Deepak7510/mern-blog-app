@@ -48,8 +48,6 @@ function App() {
     return <Loading />;
   }
 
-  console.log(sessionStorage.getItem("token"));
-
   return (
     <>
       <Routes>
