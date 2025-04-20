@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import useFetch from "@/helpers/useFetch";
-import { CalendarCheck } from "lucide-react";
+import { format } from "date-fns";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -57,12 +57,14 @@ const BlogDetails = () => {
                       <div className="text-md font-medium">
                         {blogData.user.name}
                       </div>
-                      <div className="flex gap-2 items-center text-gray-600">
-                        <CalendarCheck className="h-3 w-3" />
-                        <div className="text-xs">
-                          {" "}
-                          {new Date(blogData.createdAt).toLocaleDateString()}
-                        </div>
+                      <div className="text-xs font-medium">
+                        Last update :&nbsp;
+                        <span>
+                          {format(
+                            new Date(blogData?.createdAt),
+                            "dd-MM-yyyy HH:mm a"
+                          )}
+                        </span>
                       </div>
                     </div>
                   </div>

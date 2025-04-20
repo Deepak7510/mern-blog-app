@@ -54,7 +54,7 @@ export const addBlog = async (req, res, next) => {
 
 export const fetchAllBlog = async (req, res, next) => {
   try {
-    const blogList = await BlogModel.find()
+    const blogList = await BlogModel.find({ status: true })
       .populate({
         path: "user",
         select: "name avatar",

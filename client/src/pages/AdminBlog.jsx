@@ -160,6 +160,7 @@ const AdminBlog = () => {
     form.setValue("category", getEditData.category._id);
     form.setValue("title", getEditData.title);
     form.setValue("content", getEditData.content);
+    form.setValue("status", getEditData.status === "true" ? true : false);
     setPriview(getEditData.thumbnail);
   }
 
