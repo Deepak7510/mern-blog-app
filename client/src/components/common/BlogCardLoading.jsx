@@ -5,14 +5,14 @@ import React from "react";
 const BlogCardLoading = () => {
   return (
     <Card className="h-full py-1.5 overflow-hidden rounded-lg">
-      <CardContent className={"space-y-2 px-1.5"}>
+      <CardContent className={"space-y-0.5 px-1.5"}>
         <Skeleton className="h-52 rounded w-full" />
-        <div className="space-y-2">
+        <div className="p-2 space-y-1">
           <div className="flex items-center space-x-3">
             <Skeleton className="h-9 w-9 rounded-full" />
             <Skeleton className="h-4 w-[250px]" />
           </div>
-          <Skeleton className="h-5 w-full" />
+          <Skeleton className="h-4 w-full" />
           <Skeleton className="h-4 w-[250px]" />
         </div>
       </CardContent>
