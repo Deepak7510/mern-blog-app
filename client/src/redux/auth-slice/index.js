@@ -92,6 +92,7 @@ export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async ({ userId, formData }) => {
     try {
+      const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
         `${
           import.meta.env.VITE_BACKEND_URL
@@ -99,6 +100,7 @@ export const changePassword = createAsyncThunk(
         {
           method: "PUT",
           headers: {
+            authorization: `Bearer ${token}`,
             "Content-type": "application/json",
           },
           credentials: "include",

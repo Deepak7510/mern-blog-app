@@ -16,6 +16,6 @@ route.post("/login", loginUser);
 route.post("/google", googleLogin);
 route.get("/check-auth", isAuthenticated, getUser);
 route.get("/logout", logoutUser);
-route.put("/change-password/:userId", changePassword);
+route.put("/change-password/:userId", isAuthenticated, changePassword);
 
 export default route;

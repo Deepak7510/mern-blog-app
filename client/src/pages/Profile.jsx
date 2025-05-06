@@ -75,7 +75,11 @@ const Profile = () => {
         `${import.meta.env.VITE_BACKEND_URL}/api/user/update/${userData._id}`,
         {
           method: "PUT",
-          body: formData,
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
       );
       const result = await response.json();
@@ -83,7 +87,8 @@ const Profile = () => {
         throw result;
       }
       toast.success(result.message);
-      dispatch(checkAuth());
+      const token = JSON.parse(sessionStorage.getItem("token"));
+      dispatch(checkAuth(token));
     } catch (error) {
       toast.error(error.message);
     }
