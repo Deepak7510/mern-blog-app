@@ -15,10 +15,15 @@ import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
 const route = express.Router();
 
-route.post("/add", upload.single("thumbnail"), addBlog);
+route.post("/add", isAuthenticated, upload.single("thumbnail"), addBlog);
 route.get("/fetch", fetchAllBlog);
-route.delete("/delete/:blogId", DeleteBlog);
-route.put("/update/:blogId", upload.single("thumbnail"), updateBlog);
+route.delete("/delete/:blogId", isAuthenticated, DeleteBlog);
+route.put(
+  "/update/:blogId",
+  isAuthenticated,
+  upload.single("thumbnail"),
+  updateBlog
+);
 route.get("/fetch/by-role", isAuthenticated, fetchBlogByRole);
 route.get("/details/:slug", fetchBlogDetailsBySlug);
 route.get("/related/:categorySlug/:blogSlug", fetchRelatedBlog);

@@ -132,6 +132,7 @@ const AdminBlog = () => {
     newFormData.append("status", formData.status);
 
     try {
+      const token = JSON.parse(sessionStorage.getItem("token"));
       const url = editId
         ? `${import.meta.env.VITE_BACKEND_URL}/api/blog/update/${editId}`
         : `${import.meta.env.VITE_BACKEND_URL}/api/blog/add`;
@@ -139,7 +140,7 @@ const AdminBlog = () => {
       const response = await fetch(url, {
         method: editId ? "PUT" : "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
+          authorization: `Bearer ${token}`,
         },
         body: newFormData,
       });

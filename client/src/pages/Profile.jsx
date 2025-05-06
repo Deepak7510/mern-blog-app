@@ -69,7 +69,6 @@ const Profile = () => {
     formData.append("name", data.name);
     formData.append("bio", data.bio);
     formData.append("avatar", data.avatar);
-
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
@@ -78,9 +77,9 @@ const Profile = () => {
           method: "PUT",
           headers: {
             authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
           },
-          body: JSON.stringify(formData),
+          credentials: "include",
+          body: formData,
         }
       );
       const result = await response.json();

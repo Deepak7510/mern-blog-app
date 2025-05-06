@@ -42,13 +42,16 @@ const BlogComment = ({ blogId }) => {
     }
     const formData = { ...value, userId: user._id, blogId };
     try {
+      const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/comment/add`,
         {
           method: "POST",
           headers: {
             "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
           },
+
           body: JSON.stringify(formData),
         }
       );
