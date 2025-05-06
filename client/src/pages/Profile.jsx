@@ -71,6 +71,7 @@ const Profile = () => {
     formData.append("avatar", data.avatar);
 
     try {
+      const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/update/${userData._id}`,
         {
@@ -87,7 +88,6 @@ const Profile = () => {
         throw result;
       }
       toast.success(result.message);
-      const token = JSON.parse(sessionStorage.getItem("token"));
       dispatch(checkAuth(token));
     } catch (error) {
       toast.error(error.message);

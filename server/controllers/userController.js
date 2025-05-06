@@ -36,7 +36,6 @@ export const updateProfileData = async (req, res, next) => {
     if (!user) {
       return next(handleError(404, "User not found."));
     }
-
     let newAvatar = null;
 
     if (avatar) {
