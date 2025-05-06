@@ -77,7 +77,7 @@ const Profile = () => {
           method: "PUT",
           headers: {
             authorization: `Bearer ${token}`,
-            "Content-type": "application/json",
+            "Content-Type": "multipart/form-data",
           },
           body: JSON.stringify(formData),
         }
