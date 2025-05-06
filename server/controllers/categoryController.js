@@ -31,6 +31,10 @@ export const addCategory = async (req, res, next) => {
 
 export const fetchCategory = async (req, res, next) => {
   try {
+    const user = req.user;
+    if (user.role !== "admin") {
+      return next(handleError(403, "Unauthorized user."));
+    }
     const categoryList = await CategoryModel.find().sort({ _id: -1 });
     return res.status(200).json({
       success: true,

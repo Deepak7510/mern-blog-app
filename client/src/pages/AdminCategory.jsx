@@ -68,12 +68,17 @@ const AdminCategory = () => {
 
   async function onSubmit(formData) {
     try {
+      const token = JSON.parse(sessionStorage.getItem("token"));
       const url = editId
         ? `${import.meta.env.VITE_BACKEND_URL}/api/category/update/${editId}`
         : `${import.meta.env.VITE_BACKEND_URL}/api/category/add`;
       const response = await fetch(url, {
         method: editId ? "PUT" : "POST",
-        headers: { "Content-Type": "application/json" },
+
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
         credentials: "include",
         body: JSON.stringify(formData),
       });

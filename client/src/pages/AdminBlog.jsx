@@ -138,6 +138,9 @@ const AdminBlog = () => {
 
       const response = await fetch(url, {
         method: editId ? "PUT" : "POST",
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
         body: newFormData,
       });
 

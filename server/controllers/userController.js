@@ -90,6 +90,10 @@ export const fetchAllUser = async (_, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   try {
+    const user = req.user;
+    if (user.role !== "admin") {
+      return next(handleError(403, "Unauthorized user."));
+    }
     const { userId } = req.params;
     if (!userId) {
       return next(handleError(404, "User id not found."));
