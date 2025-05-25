@@ -8,24 +8,26 @@ function useFetch(url, option = {}, dependencies = []) {
   async function getData() {
     setLoading(true);
     try {
-      const response = await fetch(url, {
-        ...option,
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${JSON.parse(
-            sessionStorage.getItem("token")
-          )}`,
-          "Content-type": "application/json",
-        },
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message);
+      if (url !== null) {
+        const response = await fetch(url, {
+          ...option,
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${JSON.parse(
+              sessionStorage.getItem("token")
+            )}`,
+            "Content-type": "application/json",
+          },
+          credentials: "include",
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
+        }
+        const result = await response.json();
+        setData(result.data);
+        setError(null);
       }
-      const result = await response.json();
-      setData(result.data);
-      setError(null);
     } catch (error) {
       setError(error.message);
       setData(null);

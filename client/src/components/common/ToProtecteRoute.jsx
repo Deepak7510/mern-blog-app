@@ -1,27 +1,40 @@
-import { RouteAdminBlog, RouteAdminCategory, RouteComments, RouteIndex, RouteProfile, RouteSignIn, RouteSignUp, RouteUsers } from '@/helpers/route';
-import React from 'react'
-import { Navigate, useLocation } from 'react-router-dom'
+import {
+  routeAdminManageDashBoard,
+  RouteSignIn,
+  RouteUserIndexBlogs,
+  RouteUserManageBlogs,
+  //   RouteUsers,
+} from "@/helpers/route";
+import React from "react";
+import { Navigate, useLocation } from "react-router-dom";
 
-const ToProtecteRoute = ({user,isAuthenticated,children}) => {
-    const location=useLocation();
-    
-    if(isAuthenticated && (location.pathname===RouteSignIn || location.pathname===RouteSignUp)){
-        return <Navigate to={RouteIndex} />
+const ToProtecteRoute = ({ user, isAuthenticated, children }) => {
+  const location = useLocation();
+  if (isAuthenticated && location.pathname.includes("/auth")) {
+    if (user.role === "user") {
+      return <Navigate to={RouteUserIndexBlogs} />;
+    } else if (user.role === "admin") {
+      return <Navigate to={routeAdminManageDashBoard} />;
     }
+  }
 
-    if(isAuthenticated){
-        if(user.role=="user" && (location.pathname===RouteUsers || location.pathname===RouteComments || location.pathname===RouteAdminCategory)){
-            return <Navigate to={RouteIndex} />
-        }
-    }
+  if (
+    !isAuthenticated &&
+    (location.pathname.includes("/admin") ||
+      location.pathname == RouteUserManageBlogs)
+  ) {
+    return <Navigate to={RouteSignIn} />;
+  }
 
-    if(!isAuthenticated && (location.pathname===RouteProfile || location.pathname===RouteAdminBlog || location.pathname===RouteProfile || location.pathname===RouteUsers || location.pathname===RouteComments || location.pathname===RouteAdminCategory)){
-            return <Navigate to={RouteIndex} />
-    }
+  if (
+    isAuthenticated &&
+    user.role === "user" &&
+    location.pathname.includes("/admin")
+  ) {
+    return <Navigate to={RouteUserIndexBlogs} />;
+  }
 
-  return <>
-  {children}
-  </>
-}
+  return <>{children}</>;
+};
 
-export default ToProtecteRoute
+export default ToProtecteRoute;

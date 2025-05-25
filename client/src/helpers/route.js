@@ -1,34 +1,30 @@
-export const RouteIndex = '/'
-export const RouteSignIn = '/sign-in'
-export const RouteSignUp = '/sign-up'
-export const RouteProfile = '/profile'
-export const RouteAdminBlog = '/blog'
-export const RouteBlogDetails = (category, blog) => {
-    if (!category || !blog) {
-        return '/blog/details/:category/:blog';
-    } else {
-        return `/blog/details/${category}/${blog}`
-    }
-}
+export const RouteSignIn = "/auth/sign-in";
+export const RouteSignUp = "/auth/sign-up";
 
-export const RouteBlogByCategory = (category) => {
-    if (category) {
-        return `/blog/${category}`
-    } else {
-        return '/blog/:category/'
-    }
-}
+// user routes
+export const RouteUserIndexBlogs = "/";
+export const RouteUserManageBlogs = "/my-blogs";
+export const RouteUserProfile = "/profile";
+export const RouteUserBlogDetails = (category, blog) => {
+  if (!category || !blog) {
+    return "/blog/details/:category/:blog";
+  } else {
+    return `/blog/details/${category}/${blog}`;
+  }
+};
+export const RouteUserBlogByCategory = (category) => {
+  if (category) {
+    return `/blog/${category}`;
+  } else {
+    return "/blog/:category";
+  }
+};
 
-export const RouteBlogSearch=(query)=>{
-    if(query){
-        return `/blog/search?input=${query}`
-    }else{
-        return `/blog/search`
-    }
-}
-
-export const RouteAdminCategory = '/category'
-export const RouteComments = '/comments'
-export const RouteUsers = '/users'
-
-
+// admin routes
+export const routeAdminManageCategory = "/admin/manage-category";
+export const routeAdminManageDashBoard = "/admin/manage-dashboard";
+export const routeAdminManageUserBlog = "/admin/manage-user-blogs";
+export const routeAdminManageUser = "/admin/manage-user";
+export const routeAdminManageComment = "/admin/manage-comment";
+export const routeAdminManageMessage = "/admin/manage-message";
+export const routeAdminManageNewLetter = "/admin/manage-newsletter";

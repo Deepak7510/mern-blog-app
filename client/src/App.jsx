@@ -1,37 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import {
-  RouteAdminBlog,
-  RouteAdminCategory,
-  RouteBlogByCategory,
-  RouteBlogDetails,
-  RouteBlogSearch,
-  RouteComments,
-  RouteIndex,
-  RouteProfile,
+  routeAdminManageUserBlog,
+  routeAdminManageCategory,
+  routeAdminManageComment,
+  routeAdminManageDashBoard,
   RouteSignIn,
   RouteSignUp,
-  RouteUsers,
+  RouteUserBlogByCategory,
+  RouteUserBlogDetails,
+  RouteUserIndexBlogs,
+  RouteUserManageBlogs,
+  routeAdminManageUser,
+  RouteUserProfile,
 } from "./helpers/route";
-import { checkAuth } from "./redux/auth-slice";
+import SignUp from "./pages/auth/SignUp";
+import SignIn from "./pages/auth/SignIn";
+import AuthLayout from "./components/auth/AuthLayout";
+import UserHomePage from "./pages/user/UserHomePage";
+import UserLayout from "./components/user/common/UserLayout";
+import UserBlogDetailsPage from "./pages/user/UserBlogDetailsPage";
+import UserBlogByCategory from "./pages/user/UserBlogByCategory";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "./components/common/Layout";
-import Index from "./pages/Index";
-import Profile from "./pages/Profile";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-import AdminCategory from "./pages/AdminCategory";
-import Loading from "./components/common/Loading";
-import AdminBlog from "./pages/AdminBlog";
-import BlogDetails from "./pages/BlogDetails";
-import BlogByCategory from "./pages/BlogByCategory";
-import SearchResult from "./pages/SearchResult";
-import Comments from "./pages/Comments";
-import Users from "./pages/Users";
-import AuthLayout from "./components/common/AuthLayout";
+import { checkAuth } from "./redux/auth-slice";
+import AdminLayout from "./components/admin/common/AdminLayout";
+import AdminCategoryPage from "./pages/admin/AdminCategoryPage";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import AdminManageCommentPage from "./pages/admin/AdminManageCommentPage";
 import ToProtecteRoute from "./components/common/ToProtecteRoute";
-import PageNotFound from "./components/common/PageNotFound";
+import Loading from "./components/common/Loading";
+import AdminUserBlogPage from "./pages/admin/AdminUserBlogPage";
+import CommonBlogPage from "./pages/common/CommonBlogPage";
+import AdminManageUserPage from "./pages/admin/AdminManageUserPage";
+import CommonProfilePage from "./pages/common/CommonProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,26 +54,7 @@ function App() {
     <>
       <Routes>
         <Route
-          path={RouteIndex}
-          element={
-            <ToProtecteRoute user={user} isAuthenticated={isAuthenticated}>
-              <Layout />
-            </ToProtecteRoute>
-          }
-        >
-          <Route index element={<Index />} />
-          <Route path={RouteProfile} element={<Profile />} />
-          <Route path={RouteAdminCategory} element={<AdminCategory />} />
-          <Route path={RouteAdminBlog} element={<AdminBlog />} />
-          <Route path={RouteBlogDetails()} element={<BlogDetails />} />
-          <Route path={RouteBlogByCategory()} element={<BlogByCategory />} />
-          <Route path={RouteBlogSearch()} element={<SearchResult />} />
-          <Route path={RouteComments} element={<Comments />} />
-          <Route path={RouteUsers} element={<Users />} />
-        </Route>
-
-        <Route
-          path={"/"}
+          path={"/auth"}
           element={
             <ToProtecteRoute user={user} isAuthenticated={isAuthenticated}>
               <AuthLayout />
@@ -82,8 +65,84 @@ function App() {
           <Route path={RouteSignIn} element={<SignIn />} />
         </Route>
 
-        <Route path={"*"} element={<PageNotFound />} />
+        <Route
+          path={"/"}
+          element={
+            <ToProtecteRoute user={user} isAuthenticated={isAuthenticated}>
+              <UserLayout />
+            </ToProtecteRoute>
+          }
+        >
+          <Route index element={<UserHomePage />} />
+          <Route path={RouteUserManageBlogs} element={<CommonBlogPage />} />
+          <Route path={RouteUserProfile} element={<CommonProfilePage />} />
+          <Route
+            path={RouteUserBlogByCategory()}
+            element={<UserBlogByCategory />}
+          />
+          <Route
+            path={RouteUserBlogDetails()}
+            element={<UserBlogDetailsPage />}
+          />
+          <Route />
+        </Route>
+
+        <Route
+          path="/admin"
+          element={
+            <ToProtecteRoute user={user} isAuthenticated={isAuthenticated}>
+              <AdminLayout />
+            </ToProtecteRoute>
+          }
+        >
+          <Route index element={<Navigate to={routeAdminManageDashBoard} />} />
+          <Route
+            path={routeAdminManageDashBoard}
+            element={<AdminDashboardPage />}
+          />
+          <Route
+            path={routeAdminManageCategory}
+            element={<AdminCategoryPage />}
+          />
+          <Route
+            path={routeAdminManageComment}
+            element={<AdminManageCommentPage />}
+          />
+          <Route
+            path={routeAdminManageUserBlog}
+            element={<AdminUserBlogPage />}
+          />
+          <Route
+            path={routeAdminManageUser}
+            element={<AdminManageUserPage />}
+          />
+        </Route>
       </Routes>
+
+      {/* <Routes>
+        <Route
+          path={RouteIndex}
+          element={
+            <ToProtecteRoute user={user} isAuthenticated={isAuthenticated}>
+              <Layout />
+            </ToProtecteRoute>
+          }
+        >
+          <Route index element={<Index />} />
+          <Route path={RouteProfile} element={<Profile />} />
+          <Route path={routeAdminCategory} element={<AdminCategory />} />
+          <Route path={RouteAdminBlog} element={<AdminBlog />} />
+          <Route path={RouteBlogDetails()} element={<BlogDetails />} />
+          <Route path={RouteBlogByCategory()} element={<BlogByCategory />} />
+          <Route path={RouteBlogSearch()} element={<SearchResult />} />
+          <Route path={RouteComments} element={<Comments />} />
+          <Route path={RouteUsers} element={<Users />} />
+        </Route>
+
+        
+
+        <Route path={"*"} element={<PageNotFound />} />
+      </Routes> */}
     </>
   );
 }

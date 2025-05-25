@@ -4,13 +4,13 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { ConnectDB } from "./config/database.js";
 
-// Routers ------------------
-import authRouter from "./routes/authRoute.js";
-import userRouter from "./routes/userRoute.js";
-import categoryRouter from "./routes/categoryRoute.js";
-import blogRouter from "./routes/blogRoute.js";
-import CommentRouter from "./routes/commentRoute.js";
-import LikeRouter from "./routes/likeRoute.js";
+// Routes ------------------
+import authRoutes from "./routes/auth-routes.js";
+import blogsRoutes from "./routes/blogs-routes.js";
+import categoriesRoutes from "./routes/categories-routes.js";
+import commentsRoutes from "./routes/comments-routes.js";
+import likesRoutes from "./routes/likes-routes.js";
+import usersRoutes from "./routes/users-routes.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -27,12 +27,17 @@ app.use(
 );
 
 // Auth Routes
-app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
-app.use("/api/category", categoryRouter);
-app.use("/api/blog", blogRouter);
-app.use("/api/comment", CommentRouter);
-app.use("/api/like", LikeRouter);
+app.use("/api/auth", authRoutes);
+// Blog Routes
+app.use("/api/blogs", blogsRoutes);
+// category Routes
+app.use("/api/categories", categoriesRoutes);
+// comment Routes
+app.use("/api/comments", commentsRoutes);
+// likes routes
+app.use("/api/likes", likesRoutes);
+// users routes
+app.use("/api/users", usersRoutes);
 
 ConnectDB().then(() => {
   app.listen(PORT, () => {
@@ -40,7 +45,7 @@ ConnectDB().then(() => {
   });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, _, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error.";
   res.status(statusCode).json({
