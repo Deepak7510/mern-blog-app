@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { useNavigate, useParams } from "react-router-dom";
 import { RouteUserBlogByCategory } from "@/helpers/route";
+import { Separator } from "../ui/separator";
 
 const CategoryListCard = () => {
   const { category } = useParams();
@@ -16,13 +17,12 @@ const CategoryListCard = () => {
   );
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className={"text-xl font-bold"}>
-          Recommmended Categories
-        </CardTitle>
-      </CardHeader>
       <CardContent>
-        <div className="flex flex-row flex-wrap gap-2 w-full">
+        <CardTitle className={"text-base lg:text-lg font-medium"}>
+          Categories
+        </CardTitle>
+        <Separator className={"my-3 bg-gray-200 dark:bg-gray-800"} />
+        <div className="flex flex-row overflow-x-auto pb-4 md:flex-wrap gap-2 w-full">
           {loading ? (
             Array(10)
               .fill(null)
@@ -36,7 +36,7 @@ const CategoryListCard = () => {
                   onClick={() => navigate(RouteUserBlogByCategory(item.slug))}
                   variant={"outline"}
                   size={"sm"}
-                  className={`rounded-full ${
+                  className={`rounded-full text-xs ${
                     category && category === item.slug
                       ? "bg-black text-white hover:bg-black hover:text-white"
                       : ""

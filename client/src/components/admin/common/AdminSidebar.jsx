@@ -18,6 +18,7 @@ import {
   routeAdminManageUser,
   routeAdminManageMessage,
 } from "@/helpers/route";
+import AppLogo from "@/components/common/AppLogo";
 
 const SidebarAllRoute = [
   {
@@ -56,7 +57,7 @@ const AdminSidebar = () => {
   return (
     <Sidebar className={"shadow"}>
       <SidebarHeader className={"hidden md:block"}>
-        <img src={appLogo} alt="" width={120} />
+        <AppLogo />
       </SidebarHeader>
       <SidebarContent className={"bg-white dark:bg-neutral-950"}>
         <SidebarGroup>

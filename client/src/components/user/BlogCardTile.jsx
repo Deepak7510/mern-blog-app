@@ -28,12 +28,12 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
       className="h-full py-1.5 overflow-hidden rounded-lg cursor-pointer"
     >
       <CardContent
-        className={`gap-2 px-1.5 flex ${
-          cardLayout === 2 ? "flex-col" : " flex-row"
+        className={`px-1.5 flex ${
+          cardLayout === 2 ? "flex-col gap-1" : " flex-row gap-3"
         } `}
       >
         <div
-          className={`h-52 ${
+          className={`h-56 ${
             cardLayout === 2 ? "w-full" : "w-96"
           } rounded-lg overflow-hidden`}
         >
@@ -44,7 +44,7 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
           />
         </div>
         <div className="p-2 space-y-0.5">
-          <div className="flex gap-3 items-center">
+          <div className="flex gap-2 items-center">
             <Avatar className={"w-8 h-8"}>
               {blogDetails && blogDetails?.user.avatar ? (
                 <AvatarImage
@@ -57,18 +57,24 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
                 </AvatarFallback>
               )}
             </Avatar>
-            <div className="flex gap-2">
-              <div className="text-md font-normal">{blogDetails.user.name}</div>
+            <div className="flex gap-2 justify-between w-full">
+              <div className="text-base font-medium">
+                {blogDetails.user.name}
+              </div>
               {blogDetails.user.role === "admin" ? (
-                <Badge className={"rounded-full px-5"} variant={"outline"}>
-                  {blogDetails.user.role.toUpperCase()}
+                <Badge
+                  className={"rounded-full text-[0.7rem] px-5"}
+                  variant={"outline"}
+                >
+                  {blogDetails.user.role}
                 </Badge>
               ) : null}
             </div>
           </div>
 
-          <div className="line-clamp-1 font-medium text-md">{title}</div>
-
+          <div className="text-base font-medium font-sans text-gray-800 truncate">
+            {title}
+          </div>
           <div className="flex gap-1 items-center font-medium">
             <div className="text-xs">
               Last update :&nbsp;<span>{formattedDate}</span>

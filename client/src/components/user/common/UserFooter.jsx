@@ -16,6 +16,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { routeUserContact } from "@/helpers/route";
+import AppLogo from "@/components/common/AppLogo";
 
 const formSchema = z.object({
   email: z
@@ -50,7 +51,7 @@ export default function UserFooter() {
         {/* Branding */}
         <div>
           <Link to={"/user/index-blogs"}>
-            <img src={appLogo} alt="" className="object-cover" />
+            <AppLogo />
           </Link>
           <p className="text-sm mt-3 leading-relaxed">
             Learn Web helps you master modern web development through hands-on

@@ -18,9 +18,9 @@ const UserHomePage = () => {
   return (
     <div>
       <div className="flex justify-between items-center my-2.5">
-        <h1 className="text-2xl font-bold">All Blog</h1>
-        <div className="flex gap-3 items-center">
-          <div className="text-lg font-medium text-gray-600">View :</div>
+        <h1 className="text-lg md:text-xl font-bold">All Blog</h1>
+        <div className="hidden md:flex gap-3 items-center  ">
+          <div className="text-base font-medium text-gray-600">View :</div>
           <Button
             onClick={() => setCardLayout(1)}
             size={"sm"}
@@ -39,14 +39,19 @@ const UserHomePage = () => {
           </Button>
         </div>
       </div>
-      <div className={`grid grid-cols-1 md:grid-cols-3 gap-6`}>
+      <div
+        className={`grid grid-cols-1 lg:grid-cols-3 lg:gap-4 gap-2 md:gap-4 xl:gap-6`}
+      >
         <div className="md:col-span-2">
+          <div className="mb-4 lg:hidden">
+            <CategoryListCard />
+          </div>
           <div
-            className={`grid grid-cols-1 lg:${
+            className={`w-full grid grid-cols-1 ${
               cardLayout === 1
-                ? "grid-cols-1"
+                ? "md:grid-cols-1"
                 : cardLayout === 2
-                ? "grid-cols-2"
+                ? "md:grid-cols-2"
                 : ""
             } gap-3.5`}
           >
@@ -67,8 +72,10 @@ const UserHomePage = () => {
             )}
           </div>
         </div>
-        <div className="space-y-3">
-          <CategoryListCard />
+        <div className="space-y-3 md:col-span-1 ">
+          <div className="hidden lg:block">
+            <CategoryListCard />
+          </div>
           <LatestBlogCard />
         </div>
       </div>

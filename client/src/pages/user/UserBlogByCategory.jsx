@@ -44,6 +44,9 @@ const UserBlogByCategory = () => {
       </div>
       <div className={`grid grid-cols-1 md:grid-cols-3 gap-6`}>
         <div className="md:col-span-2">
+          <div className="mb-4 lg:hidden">
+            <CategoryListCard />
+          </div>
           <div
             className={`grid grid-cols-1 lg:${
               cardLayout === 1
@@ -73,7 +76,9 @@ const UserBlogByCategory = () => {
           </div>
         </div>
         <div className="space-y-3">
-          <CategoryListCard />
+          <div className="hidden lg:block">
+            <CategoryListCard />
+          </div>
           <LatestBlogCard />
         </div>
       </div>

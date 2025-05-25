@@ -101,7 +101,7 @@ const BlogComment = ({ blogId }) => {
   return (
     <div>
       <div className="flex my-1">
-        <span className="text-lg font-bold">Add a comment</span>
+        <span className="text-base font-medium">Add a comment</span>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
@@ -118,13 +118,17 @@ const BlogComment = ({ blogId }) => {
             )}
           />
           <div className="flex justify-end">
-            <Button size={"sm"} className={"rounded-full"} type="submit">
+            <Button
+              size={"sm"}
+              className={"rounded-full text-xs px-6"}
+              type="submit"
+            >
               Comment
             </Button>
           </div>
         </form>
       </Form>
-      <div className="text-lg font-bold">
+      <div className="text-base font-medium">
         {commentList && commentList.length} Comments
       </div>
       <div className="my-1 max-h-[600px] overflow-y-auto">
@@ -149,8 +153,8 @@ const BlogComment = ({ blogId }) => {
                     )}
                   </Avatar>
                   <div>
-                    <div className="text-md font-medium">
-                      @{item.user.name}{" "}
+                    <div className="text-sm font-medium">
+                      {item.user.name + " "}
                       <span className="text-xs">
                         {new Date(item.createdAt).toLocaleDateString()}
                       </span>{" "}

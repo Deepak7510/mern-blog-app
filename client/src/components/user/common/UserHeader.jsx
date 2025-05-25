@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import InputSearchBar from "../InputSearchBar";
-import { LogInIcon, LogOut } from "lucide-react";
+import { LogInIcon, LogOut, SearchIcon, XIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser, resetTokenAndCredantial } from "@/redux/auth-slice";
@@ -23,9 +23,10 @@ import {
   RouteUserProfile,
 } from "@/helpers/route";
 
-import appLogo from "../../../assets/appLogo.svg";
 import toast from "react-hot-toast";
 import { ModeToggle } from "@/components/common/mode-toggle";
+import AppLogo from "@/components/common/AppLogo";
+import { useTheme } from "@/components/common/theme-provider";
 
 export const TopbarRightSide = () => {
   const dispatch = useDispatch();
@@ -44,42 +45,34 @@ export const TopbarRightSide = () => {
   return (
     <div>
       {isAuthenticated ? (
-        <div className="flex gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar className={"w-11.5 h-11.5"}>
-                {user && user?.avatar ? (
-                  <AvatarImage src={user.avatar} className={"object-cover"} />
-                ) : (
-                  <AvatarFallback className={"font-bold text-lg"}>
-                    {user.name[0]}
-                  </AvatarFallback>
-                )}
-              </Avatar>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent side="bottom" className={"mr-2 px-5"}>
-              <DropdownMenuLabel>
-                Welcome {user.name.split(" ")[0]}
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link to={RouteUserProfile}>Profile</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link to={RouteUserManageBlogs}>Manage blog</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>Billing</DropdownMenuItem>
-              <DropdownMenuItem asChild>Team</DropdownMenuItem>
-              <DropdownMenuItem onClick={handleLogout}>
-                <LogOut /> Logout
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <div className="md:hidden">
-            <div className="text-sm font-bold">{user && user.name}</div>
-            <div className="text-xs">{user && user.email}</div>
-          </div>
-        </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar className={"w-10 h-10"}>
+              {user && user?.avatar ? (
+                <AvatarImage src={user.avatar} className={"object-cover"} />
+              ) : (
+                <AvatarFallback className={"font-bold text-lg"}>
+                  {user.name[0]}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="bottom" className={"mr-2 px-5"}>
+            <DropdownMenuLabel>
+              Welcome {user.name.split(" ")[0]}
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link to={RouteUserProfile}>Profile</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link to={RouteUserManageBlogs}>Manage blog</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
+              <LogOut /> Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       ) : (
         <Button className="rounded-full" asChild>
           <Link to={RouteSignIn}>
@@ -92,18 +85,41 @@ export const TopbarRightSide = () => {
 };
 
 const UserHeader = () => {
+  const [showSearchInput, setShowSearchInput] = useState(false);
   return (
-    <header className="bg-white dark:bg-neutral-950 border-gray-200 dark:border-gray-800 flex justify-between items-center border-b-2 py-2 px-10 fixed z-10 top-0 w-full">
-      <div>
-        <Link to={RouteUserIndexBlogs}>
-          <img src={appLogo} alt="" className="object-cover" />
-        </Link>
-      </div>
-      <div className="flex gap-5 items-center">
-        <InputSearchBar />
-        <ModeToggle />
-        <TopbarRightSide />
-      </div>
+    <header className="bg-white dark:bg-neutral-950 border-gray-200 dark:border-gray-800 flex justify-between items-center border-b-2 py-1.5 px-3 md:px-10 fixed z-10 top-0 w-full">
+      {showSearchInput ? (
+        <div className="flex gap-2 w-full px-5">
+          <div className="w-full">
+            <InputSearchBar />
+          </div>
+          <button onClick={() => setShowSearchInput(false)}>
+            <XIcon className="h-5 w-5" />
+          </button>
+        </div>
+      ) : (
+        <>
+          <div>
+            <Link to={RouteUserIndexBlogs}>
+              <AppLogo />
+            </Link>
+          </div>
+          <div className="flex gap-2 md:gap-5 items-center">
+            <div className="hidden md:block">
+              <InputSearchBar />
+            </div>
+            <button
+              onClick={() => setShowSearchInput(true)}
+              className="md:hidden"
+              variant={"icon"}
+            >
+              <SearchIcon className="h-5 w-5" />
+            </button>
+            <ModeToggle />
+            <TopbarRightSide />
+          </div>
+        </>
+      )}
     </header>
   );
 };

@@ -32,6 +32,9 @@ const UserBlogDetailsPage = () => {
     <div className="py-3">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
+          <div className="mb-4 lg:hidden">
+            <CategoryListCard />
+          </div>
           <Card>
             <CardContent>
               {loading ? (
@@ -54,7 +57,7 @@ const UserBlogDetailsPage = () => {
                         )}
                       </Avatar>
                       <div>
-                        <div className="text-md font-medium">
+                        <div className="text-base font-medium">
                           {blogDetails.user.name}
                         </div>
                         <div className="text-xs font-medium">
@@ -69,7 +72,9 @@ const UserBlogDetailsPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="text-lg font-normal">{blogDetails.title}</div>
+                  <div className="text-lg my-2 font-medium">
+                    {blogDetails.title}
+                  </div>
                   <div className="h-52 sm:h-[350px] md:h-[400px] lg:h-[450px]">
                     <img
                       src={blogDetails.thumbnail}
@@ -78,6 +83,7 @@ const UserBlogDetailsPage = () => {
                     />
                   </div>
                   <div
+                    className="my-2"
                     dangerouslySetInnerHTML={{
                       __html: decodeHTML(blogDetails?.content),
                     }}
@@ -95,7 +101,9 @@ const UserBlogDetailsPage = () => {
           </Card>
         </div>
         <div className="space-y-3">
-          <CategoryListCard />
+          <div className="hidden lg:block">
+            <CategoryListCard />
+          </div>
           <RelatedBlogCard categorySlug={category} blogSlug={blog} />
         </div>
       </div>

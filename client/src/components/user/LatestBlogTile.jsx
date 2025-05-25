@@ -28,12 +28,14 @@ const LatestBlogTile = ({ blogDetails }) => {
           className="h-full w-full object-cover"
         />
       </div>
-      <div className="space-y-0 w-full">
-        <div className="text-base font-medium">{title}</div>
-        <div className="text-sm font-medium text-gray-700">
-          {blogDetails.user.name}
+      <div className="w-full">
+        <div className="text-sm font-medium">{title}</div>
+        <div className="text-xs font-medium text-gray-700">
+          By {blogDetails.user.name}
         </div>
-        <div className="text-xs font-medium text-gray-500">{formattedDate}</div>
+        <div className="text-xs font-medium text-gray-500">
+          Last update : {formattedDate}
+        </div>
       </div>
     </div>
   );
