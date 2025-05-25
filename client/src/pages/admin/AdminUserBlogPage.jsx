@@ -18,7 +18,6 @@ import UserBlogTableRow from "@/components/admin/UserBlogTableRow";
 
 const AdminUserBlogPage = () => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const { getData, data, loading } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}/api/blogs/users-blogs`,
     {},
@@ -45,7 +44,7 @@ const AdminUserBlogPage = () => {
       if (!response.ok) throw result;
       toast.success(result.message);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   }

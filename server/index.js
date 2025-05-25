@@ -11,6 +11,7 @@ import categoriesRoutes from "./routes/categories-routes.js";
 import commentsRoutes from "./routes/comments-routes.js";
 import likesRoutes from "./routes/likes-routes.js";
 import usersRoutes from "./routes/users-routes.js";
+import messagesRoutes from "./routes/messages-routes.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -38,6 +39,8 @@ app.use("/api/comments", commentsRoutes);
 app.use("/api/likes", likesRoutes);
 // users routes
 app.use("/api/users", usersRoutes);
+// messages routes
+app.use("/api/messages", messagesRoutes);
 
 ConnectDB().then(() => {
   app.listen(PORT, () => {

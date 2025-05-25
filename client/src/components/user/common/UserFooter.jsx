@@ -15,6 +15,7 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { routeUserContact } from "@/helpers/route";
 
 const formSchema = z.object({
   email: z
@@ -44,7 +45,7 @@ export default function UserFooter() {
   // }
 
   return (
-    <footer className="py-6 mt-10 bg-neutral-100">
+    <footer className="py-6 mt-10 bg-neutral-100 dark:bg-neutral-950 border-t border-gray-200 dark:border-gray-800">
       <div className="px-6 md:px-20 grid md:grid-cols-4 sm:grid-cols-2 gap-6 md:gap-20">
         {/* Branding */}
         <div>
@@ -71,7 +72,7 @@ export default function UserFooter() {
               <Link to={"/about-us"}>About us</Link>
             </li>
             <li>
-              <Link to={"/contact"}>Contact</Link>
+              <Link to={routeUserContact}>Contact</Link>
             </li>
           </ul>
         </div>

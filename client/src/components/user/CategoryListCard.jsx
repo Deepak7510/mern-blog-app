@@ -8,7 +8,6 @@ import { RouteUserBlogByCategory } from "@/helpers/route";
 
 const CategoryListCard = () => {
   const { category } = useParams();
-  console.log(category);
   const navigate = useNavigate();
   const { data: categoryData, loading } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}/api/categories/active`,

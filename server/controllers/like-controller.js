@@ -20,6 +20,7 @@ export const toggleLike = async (req, res, next) => {
       likeCount,
     });
   } catch (error) {
+    console.error(error);
     next(handleError(500, "Internal server error."));
   }
 };
@@ -36,6 +37,7 @@ export const getLikesCount = async (req, res, next) => {
       data: likeCount,
     });
   } catch (error) {
+    console.error(error);
     next(handleError(500, "Internal server error."));
   }
 };
@@ -56,6 +58,7 @@ export const checkUserLikeOrNot = async (req, res, next) => {
       data: likeStatus,
     });
   } catch (error) {
+    console.error(error);
     next(handleError(500, "Internal server error."));
   }
 };

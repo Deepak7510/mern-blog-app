@@ -25,6 +25,7 @@ import {
 
 import appLogo from "../../../assets/appLogo.svg";
 import toast from "react-hot-toast";
+import { ModeToggle } from "@/components/common/mode-toggle";
 
 export const TopbarRightSide = () => {
   const dispatch = useDispatch();
@@ -92,17 +93,16 @@ export const TopbarRightSide = () => {
 
 const UserHeader = () => {
   return (
-    <header className="bg-white flex justify-between items-center border-b-2 py-2 px-10 fixed z-10 top-0 w-full">
-      <Link to={RouteUserIndexBlogs}>
-        <img src={appLogo} alt="" className="object-cover" />
-      </Link>
+    <header className="bg-white dark:bg-neutral-950 border-gray-200 dark:border-gray-800 flex justify-between items-center border-b-2 py-2 px-10 fixed z-10 top-0 w-full">
+      <div>
+        <Link to={RouteUserIndexBlogs}>
+          <img src={appLogo} alt="" className="object-cover" />
+        </Link>
+      </div>
       <div className="flex gap-5 items-center">
-        <div>
-          <InputSearchBar />
-        </div>
-        <div>
-          <TopbarRightSide />
-        </div>
+        <InputSearchBar />
+        <ModeToggle />
+        <TopbarRightSide />
       </div>
     </header>
   );

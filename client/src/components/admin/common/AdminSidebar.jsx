@@ -16,6 +16,7 @@ import {
   routeAdminManageCategory,
   routeAdminManageDashBoard,
   routeAdminManageUser,
+  routeAdminManageMessage,
 } from "@/helpers/route";
 
 const SidebarAllRoute = [
@@ -39,6 +40,11 @@ const SidebarAllRoute = [
     path: routeAdminManageUser,
     icon: <LayoutDashboard />,
   },
+  {
+    label: "User Messages",
+    path: routeAdminManageMessage,
+    icon: <LayoutDashboard />,
+  },
 ];
 
 const AdminSidebar = () => {
@@ -52,7 +58,7 @@ const AdminSidebar = () => {
       <SidebarHeader className={"hidden md:block"}>
         <img src={appLogo} alt="" width={120} />
       </SidebarHeader>
-      <SidebarContent className={"bg-white"}>
+      <SidebarContent className={"bg-white dark:bg-neutral-950"}>
         <SidebarGroup>
           <SidebarMenu>
             {SidebarAllRoute && SidebarAllRoute.length > 0

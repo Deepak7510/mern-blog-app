@@ -34,12 +34,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import slugify from "slugify";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import toast from "react-hot-toast";
 import useFetch from "@/helpers/useFetch";
 import { Label } from "@/components/ui/label";
 import { Cloud, XIcon } from "lucide-react";
-import BlogTableRow from "@/components/user/BlogTableRow";
 import { useSelector } from "react-redux";
 import BlogTableRowLoading from "@/components/user/BlogTableRowLoading";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -47,10 +45,10 @@ import { blogSchema } from "@/helpers/Validation";
 import Loading2 from "@/components/common/Loading2";
 import "react-quill-new/dist/quill.snow.css";
 import CustomEditor from "@/components/common/TextEditer";
+import BlogTableRow from "@/components/common/BlogTableRow";
 
 const CommonBlogPage = () => {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   const [preview, setPriview] = useState("");
   const [editId, setEditId] = useState(null);
   const [openBlogDialog, setOpenBlogDialog] = useState(false);
@@ -186,7 +184,7 @@ const CommonBlogPage = () => {
       if (!response.ok) throw result;
       toast.success(result.message);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   }

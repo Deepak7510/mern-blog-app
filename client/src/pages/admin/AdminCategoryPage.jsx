@@ -120,7 +120,7 @@ const AdminCategoryPage = () => {
       if (!response.ok) throw result;
       toast.success(result.message);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   }

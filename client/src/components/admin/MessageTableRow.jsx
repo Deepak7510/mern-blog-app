@@ -1,7 +1,7 @@
 import React from "react";
 import { TableCell, TableRow } from "../ui/table";
 import { Button } from "../ui/button";
-import { Edit, Trash, ViewIcon } from "lucide-react";
+import { Trash } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,23 +14,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
-import { RouteUserBlogDetails } from "@/helpers/route";
-import { Switch } from "../ui/switch";
 
-function DeleteButton({ blogId, getData }) {
-  async function handleDelete(getBlogId) {
+function DeleteButton({ messageId, getData }) {
+  async function handleDelete(getMessageId) {
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/admin/blog/delete/${getBlogId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/messages/${getMessageId}`,
         {
           method: "DELETE",
           headers: {
-            authorization: `Bearer ${token}`,
             "Content-type": "application/json",
+            authorization: `Bearer ${token}`,
           },
         }
       );
@@ -53,21 +48,20 @@ function DeleteButton({ blogId, getData }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>
-          <Trash />
+        <Button size={"sm"} variant={"outline"}>
+          <Trash color="red" />
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete Blog?</AlertDialogTitle>
+          <AlertDialogTitle>Delete this comment?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. It will permanently remove this blog
-            and its related data.
+            This action is irreversible.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={() => handleDelete(blogId)}>
+          <AlertDialogAction onClick={() => handleDelete(messageId)}>
             Continue
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -76,36 +70,24 @@ function DeleteButton({ blogId, getData }) {
   );
 }
 
-const BlogTableRow = ({
-  blogData,
-  handleEdit,
-  getData,
-  handleActiveStatus,
-}) => {
-  const titleText = blogData.title.split(" ").slice(0, 4).join(" ");
-  const more = blogData.title.split(" ").length > 4 ? "..." : "";
-  const title = titleText + more;
-
+const MessageTableRow = ({ messageDetails, getData }) => {
+  const message =
+    messageDetails.message.split(" ").length > 5
+      ? messageDetails.message.split(" ").slice(0, 5).join(" ").concat("...")
+      : messageDetails.message;
   return (
     <TableRow>
-      <TableCell className="font-medium">{blogData.user.name}</TableCell>
-      <TableCell>{blogData.category.name}</TableCell>
-      <TableCell>{title}</TableCell>
-      <TableCell>{new Date(blogData.createdAt).toLocaleDateString()}</TableCell>
+      <TableCell className={"font-medium"}>{messageDetails.name}</TableCell>
+      <TableCell>{messageDetails.email}</TableCell>
+      <TableCell>{message}</TableCell>
       <TableCell>
-        <Switch
-          defaultChecked={Boolean(blogData.status)}
-          onCheckedChange={(value) => handleActiveStatus(blogData._id, value)}
-        />
+        {new Date(messageDetails.createdAt).toLocaleDateString()}
       </TableCell>
       <TableCell className={"space-x-2"}>
-        <Button onClick={() => handleEdit(blogData)}>
-          <Edit />
-        </Button>
-        <DeleteButton blogId={blogData._id} getData={getData} />
+        <DeleteButton messageId={messageDetails._id} getData={getData} />
       </TableCell>
     </TableRow>
   );
 };
 
-export default BlogTableRow;
+export default MessageTableRow;

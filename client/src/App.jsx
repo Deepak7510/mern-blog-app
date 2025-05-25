@@ -14,6 +14,8 @@ import {
   RouteUserManageBlogs,
   routeAdminManageUser,
   RouteUserProfile,
+  routeUserContact,
+  routeAdminManageMessage,
 } from "./helpers/route";
 import SignUp from "./pages/auth/SignUp";
 import SignIn from "./pages/auth/SignIn";
@@ -34,6 +36,9 @@ import AdminUserBlogPage from "./pages/admin/AdminUserBlogPage";
 import CommonBlogPage from "./pages/common/CommonBlogPage";
 import AdminManageUserPage from "./pages/admin/AdminManageUserPage";
 import CommonProfilePage from "./pages/common/CommonProfilePage";
+import UserContactPage from "./pages/user/UserContactPage";
+import ScrollToTop from "./components/common/ScrollToTop";
+import AdminMangeMessagePage from "./pages/admin/AdminMangeMessagePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +57,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route
           path={"/auth"}
@@ -76,6 +82,7 @@ function App() {
           <Route index element={<UserHomePage />} />
           <Route path={RouteUserManageBlogs} element={<CommonBlogPage />} />
           <Route path={RouteUserProfile} element={<CommonProfilePage />} />
+          <Route path={routeUserContact} element={<UserContactPage />} />
           <Route
             path={RouteUserBlogByCategory()}
             element={<UserBlogByCategory />}
@@ -115,6 +122,10 @@ function App() {
           <Route
             path={routeAdminManageUser}
             element={<AdminManageUserPage />}
+          />
+          <Route
+            path={routeAdminManageMessage}
+            element={<AdminMangeMessagePage />}
           />
         </Route>
       </Routes>

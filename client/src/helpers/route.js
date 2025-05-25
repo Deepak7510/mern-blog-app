@@ -5,6 +5,7 @@ export const RouteSignUp = "/auth/sign-up";
 export const RouteUserIndexBlogs = "/";
 export const RouteUserManageBlogs = "/my-blogs";
 export const RouteUserProfile = "/profile";
+export const routeUserContact = "/contact";
 export const RouteUserBlogDetails = (category, blog) => {
   if (!category || !blog) {
     return "/blog/details/:category/:blog";

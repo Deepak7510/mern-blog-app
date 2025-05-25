@@ -123,7 +123,7 @@ export const updateCategoryActiveStatus = async (req, res, next) => {
       message: "Active status updated successfully.",
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     next(handleError(500, "Internal Server Error."));
   }
 };

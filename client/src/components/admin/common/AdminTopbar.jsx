@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/common/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,41 +34,44 @@ const AdminTopbar = () => {
     });
   }
   return (
-    <header className="flex justify-between items-center py-2 top-0 sticky w-full z-50 px-4 lg:px-5 gap-2 bg-white shadow">
+    <header className="flex justify-between items-center py-2 top-0 sticky w-full z-50 px-4 lg:px-5 gap-2 border-b dark:border-b-gray-700 bg-white dark:bg-neutral-950 shadow">
       <Button onClick={toggleSidebar} size={"sm"} variant={"icon"}>
         <AlignJustify />
       </Button>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Avatar className={"w-11.5 h-11.5"}>
-            {user && user?.avatar ? (
-              <AvatarImage src={user.avatar} className={"object-cover"} />
-            ) : (
-              <AvatarFallback className={"font-bold text-lg"}>
-                {user.name[0]}
-              </AvatarFallback>
-            )}
-          </Avatar>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent side="bottom" className={"mr-2 px-5"}>
-          <DropdownMenuLabel>
-            Welcome {user.name.split(" ")[0]}
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            {/* <Link to={RouteUserProfile}>Profile</Link> */}
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            {/* <Link to={RouteUserManageBlogs}>Manage blog</Link> */}
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>Billing</DropdownMenuItem>
-          <DropdownMenuItem asChild>Team</DropdownMenuItem>
-          <DropdownMenuItem onClick={handleLogout}>
-            <LogOut /> Logout
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="flex justify-center items-center gap-4">
+        <ModeToggle />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar className={"w-11.5 h-11.5"}>
+              {user && user?.avatar ? (
+                <AvatarImage src={user.avatar} className={"object-cover"} />
+              ) : (
+                <AvatarFallback className={"font-bold text-lg"}>
+                  {user.name[0]}
+                </AvatarFallback>
+              )}
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="bottom" className={"mr-2 px-5"}>
+            <DropdownMenuLabel>
+              Welcome {user.name.split(" ")[0]}
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              {/* <Link to={RouteUserProfile}>Profile</Link> */}
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              {/* <Link to={RouteUserManageBlogs}>Manage blog</Link> */}
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>Billing</DropdownMenuItem>
+            <DropdownMenuItem asChild>Team</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleLogout}>
+              <LogOut /> Logout
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </header>
   );
 };

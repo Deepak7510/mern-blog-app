@@ -15,14 +15,13 @@ import UsersTableRow from "@/components/admin/UserTableRow";
 import UserTableRowLoading from "@/components/admin/UserTableRowLoading";
 
 const AdminManageUserPage = () => {
-  const { getData, data, loading } = useFetch(
+  const { data, loading } = useFetch(
     `${import.meta.env.VITE_BACKEND_URL}/api/users`,
     {},
     []
   );
 
   async function handleBlockStatus(getUserId, status) {
-    console.log(getUserId, status);
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
@@ -44,13 +43,13 @@ const AdminManageUserPage = () => {
       if (!response.ok) throw result;
       toast.success(result.message);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.message);
     }
   }
 
   return (
-    <Card className="m-2 md:m-3">
+    <Card>
       <CardContent>
         <Table>
           <TableCaption>Total User : {data?.length}</TableCaption>
