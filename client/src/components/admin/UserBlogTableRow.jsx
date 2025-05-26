@@ -28,6 +28,7 @@ function DeleteButton({ blogId, getData }) {
             authorization: `Bearer ${token}`,
             "Content-type": "application/json",
           },
+          credentials: "include",
         }
       );
 

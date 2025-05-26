@@ -51,7 +51,7 @@ function DeleteButton({ blogId, getData }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>
+        <Button variant={"outline"} size={"sm"}>
           <Trash />
         </Button>
       </AlertDialogTrigger>
@@ -97,14 +97,18 @@ const BlogTableRow = ({
         />
       </TableCell>
       <TableCell className={"space-x-2"}>
-        <Button asChild>
+        <Button variant={"outline"} size={"sm"} asChild>
           <Link
             to={RouteUserBlogDetails(blogData.category.slug, blogData.slug)}
           >
             <ViewIcon />
           </Link>
         </Button>
-        <Button onClick={() => handleEdit(blogData)}>
+        <Button
+          variant={"outline"}
+          size={"sm"}
+          onClick={() => handleEdit(blogData)}
+        >
           <Edit />
         </Button>
         <DeleteButton blogId={blogData._id} getData={getData} />

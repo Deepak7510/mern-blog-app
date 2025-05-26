@@ -19,7 +19,7 @@ const UserBlogDetailsPage = () => {
   const { category, blog } = useParams();
 
   if (!blog || !category) {
-    navigate("/");
+    return navigate("/");
   }
 
   const { data: blogDetails, loading } = useFetch(
@@ -29,179 +29,84 @@ const UserBlogDetailsPage = () => {
   );
 
   return (
-    <div className="py-3">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2">
-          <div className="mb-4 lg:hidden">
-            <CategoryListCard />
-          </div>
-          <Card>
-            <CardContent>
-              {loading ? (
-                ""
-              ) : blogDetails ? (
-                <div>
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-4">
-                      <Avatar className={"w-12 h-12"}>
-                        {blogDetails && blogDetails?.user.avatar ? (
-                          <AvatarImage
-                            src={blogDetails.user.avatar}
-                            alt="profile-avatar"
-                            className={"object-cover"}
-                          />
-                        ) : (
-                          <AvatarFallback className={"font-bold text-lg"}>
-                            {blogDetails.user.name[0]}
-                          </AvatarFallback>
-                        )}
-                      </Avatar>
-                      <div>
-                        <div className="text-base font-medium">
-                          {blogDetails.user.name}
-                        </div>
-                        <div className="text-xs font-medium">
-                          Last update :&nbsp;
-                          <span>
-                            {format(
-                              new Date(blogDetails?.createdAt),
-                              "dd-MM-yyyy HH:mm a"
-                            )}
-                          </span>
-                        </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="md:col-span-2">
+        <div className="mb-3 lg:hidden">
+          <CategoryListCard />
+        </div>
+        <Card>
+          <CardContent>
+            {loading ? (
+              ""
+            ) : blogDetails ? (
+              <div>
+                <div className="flex justify-between items-center">
+                  <div className="flex gap-4">
+                    <Avatar className={"w-12 h-12"}>
+                      {blogDetails && blogDetails?.user.avatar ? (
+                        <AvatarImage
+                          src={blogDetails.user.avatar}
+                          alt="profile-avatar"
+                          className={"object-cover"}
+                        />
+                      ) : (
+                        <AvatarFallback className={"font-bold text-lg"}>
+                          {blogDetails.user.name[0]}
+                        </AvatarFallback>
+                      )}
+                    </Avatar>
+                    <div>
+                      <div className="text-base font-medium">
+                        {blogDetails.user.name}
+                      </div>
+                      <div className="text-xs font-medium">
+                        Last update :&nbsp;
+                        <span>
+                          {format(
+                            new Date(blogDetails?.createdAt),
+                            "dd-MM-yyyy HH:mm a"
+                          )}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="text-lg my-2 font-medium">
-                    {blogDetails.title}
-                  </div>
-                  <div className="h-52 sm:h-[350px] md:h-[400px] lg:h-[450px]">
-                    <img
-                      src={blogDetails.thumbnail}
-                      alt="thumnail-image"
-                      className="w-full h-full object-cover rounded"
-                    />
-                  </div>
-                  <div
-                    className="my-2"
-                    dangerouslySetInnerHTML={{
-                      __html: decodeHTML(blogDetails?.content),
-                    }}
-                  ></div>
-                  <div className="my-2">
-                    <BlogLike blogId={blogDetails._id} />
-                  </div>
-                  <Separator className={"my-4"} />
-                  <BlogComment blogId={blogDetails?._id} />
                 </div>
-              ) : (
-                <div>Blog not found</div>
-              )}
-            </CardContent>
-          </Card>
+                <div className="text-lg my-2 font-medium">
+                  {blogDetails.title}
+                </div>
+                <div className="h-52 sm:h-[350px] md:h-[400px] lg:h-[450px]">
+                  <img
+                    src={blogDetails.thumbnail}
+                    alt="thumnail-image"
+                    className="w-full h-full object-cover rounded"
+                  />
+                </div>
+                <div
+                  className="content-wrapper my-2"
+                  dangerouslySetInnerHTML={{
+                    __html: decodeHTML(blogDetails?.content),
+                  }}
+                ></div>
+                <div className="my-2">
+                  <BlogLike blogId={blogDetails._id} />
+                </div>
+                <Separator className={"my-4"} />
+                <BlogComment blogId={blogDetails?._id} />
+              </div>
+            ) : (
+              <div>Blog not found</div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+      <div className="space-y-3">
+        <div className="hidden lg:block">
+          <CategoryListCard />
         </div>
-        <div className="space-y-3">
-          <div className="hidden lg:block">
-            <CategoryListCard />
-          </div>
-          <RelatedBlogCard categorySlug={category} blogSlug={blog} />
-        </div>
+        <RelatedBlogCard categorySlug={category} blogSlug={blog} />
       </div>
     </div>
   );
 };
 
 export default UserBlogDetailsPage;
-// <div className="flex flex-col lg:flex-row w-full gap-4 p-3">
-//   {/* <Card className={"w-full lg:w-[70%] py-3"}>
-//     <CardContent className={"space-y-2  px-4"}>
-//       {blogDetails && !loading ? (
-//         <>
-//           <div className="flex justify-between items-center">
-//             <div className="flex gap-4">
-//               <Avatar className={"w-12 h-12"}>
-//                 {blogDetails && blogDetails?.user.avatar ? (
-//                   <AvatarImage
-//                     src={blogDetails.user.avatar}
-//                     alt="profile-avatar"
-//                     className={"object-cover"}
-//                   />
-//                 ) : (
-//                   <AvatarFallback className={"font-bold text-lg"}>
-//                     {blogDetails.user.name[0]}
-//                   </AvatarFallback>
-//                 )}
-//               </Avatar>
-//               <div>
-//                 <div className="text-md font-medium">
-//                   {blogDetails.user.name}
-//                 </div>
-//                 <div className="text-xs font-medium">
-//                   Last update :&nbsp;
-//                   <span>
-//                     {format(
-//                       new Date(blogDetails?.createdAt),
-//                       "dd-MM-yyyy HH:mm a"
-//                     )}
-//                   </span>
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="flex gap-3">
-//               <LikeCount blogId={blogDetails._id} />
-//               <CommentCount blogId={blogDetails._id} />
-//             </div>
-//           </div>
-//           <div className="text-lg font-normal">{blogDetails.title}</div>
-//           <div className="h-52 sm:h-[350px] md:h-[400px] lg:h-[450px]">
-//             <img
-//               src={blogDetails.thumbnail}
-//               alt="thumnail-image"
-//               className="w-full h-full object-cover rounded"
-//             />
-//           </div>
-//           <div
-//             dangerouslySetInnerHTML={{
-//               __html: decodeHTML(blogDetails?.content),
-//             }}
-//           ></div>
-//           <Separator />
-//           <BlogComment blogId={blogDetails._id} />
-//         </>
-//       ) : (
-//         <>
-//           <div className="flex justify-between items-center">
-//             <div className="flex items-center space-x-4">
-//               <Skeleton className="h-12 w-12 rounded-full" />
-//               <div className="space-y-2">
-//                 <Skeleton className="h-4 w-[250px]" />
-//                 <Skeleton className="h-4 w-[200px]" />
-//               </div>
-//             </div>
-//             <div className="flex gap-3">
-//               <Skeleton className="h-5 w-[35px]" />
-//               <Skeleton className="h-5 w-[35px]" />
-//             </div>
-//           </div>
-//           <div className="space-y-2">
-//             <Skeleton className="h-4 w-full" />
-//             <Skeleton className="h-4 w-full" />
-//           </div>
-//           <Skeleton className="h-[450px] w-full" />
-//           <div className="space-y-2">
-//             <Skeleton className="h-4 w-full" />
-//             <Skeleton className="h-4 w-full" />
-//             <Skeleton className="h-4 w-full" />
-//             <Skeleton className="h-4 w-full" />
-//             <Skeleton className="h-4 w-full" />
-//           </div>
-//         </>
-//       )}
-//     </CardContent>
-//   </Card>
-//   <Card className={"w-full h-fit lg:w-[30%]"}>
-//     <CardContent>
-//       <RelatedBlog category={category} blog={blog} />
-//     </CardContent>
-//   </Card> */}
-// </div>

@@ -15,7 +15,11 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { routeUserContact } from "@/helpers/route";
+import {
+  routeUserAbout,
+  routeUserContact,
+  RouteUserIndexBlogs,
+} from "@/helpers/route";
 import AppLogo from "@/components/common/AppLogo";
 
 const formSchema = z.object({
@@ -47,13 +51,13 @@ export default function UserFooter() {
 
   return (
     <footer className="py-6 mt-10 bg-neutral-100 dark:bg-neutral-950 border-t border-gray-200 dark:border-gray-800">
-      <div className="px-6 md:px-20 grid md:grid-cols-4 sm:grid-cols-2 gap-6 md:gap-20">
+      <div className="px-6 md:px-20 grid md:grid-cols-3 sm:grid-cols-2 gap-6 md:gap-20">
         {/* Branding */}
         <div>
           <Link to={"/user/index-blogs"}>
             <AppLogo />
           </Link>
-          <p className="text-sm mt-3 leading-relaxed">
+          <p className="text-sm font-medium mt-2 leading-relaxed">
             Learn Web helps you master modern web development through hands-on
             training and real-world projects. Gain practical skills in HTML,
             CSS, JavaScript, and more with expert-led courses. Learn at your own
@@ -64,13 +68,13 @@ export default function UserFooter() {
 
         {/* Navigation */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
+          <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
+          <ul className="space-y-2 text-sm font-medium">
             <li>
-              <Link to={"/"}>Home</Link>
+              <Link to={RouteUserIndexBlogs}>Home</Link>
             </li>
             <li>
-              <Link to={"/about-us"}>About us</Link>
+              <Link to={routeUserAbout}>About</Link>
             </li>
             <li>
               <Link to={routeUserContact}>Contact</Link>
@@ -79,52 +83,17 @@ export default function UserFooter() {
         </div>
 
         {/* Contact Info */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+        <div className="font-medium">
+          <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
           <p className="text-sm mb-2">Email: deepakkumaryadav75100@gmail.com</p>
           <p className="text-sm mb-2">Phone: +91 7510064500</p>
           <p className="text-sm">Address: Balrampur, India</p>
-        </div>
-
-        {/* Newsletter */}
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Join Our Newsletter</h3>
-          <p className="text-sm mb-2">Get latest updates & free tips!</p>
-
-          {/* <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="flex items-start gap-2 mt-3"
-            >
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Your email"
-                        className="bg-gray-800 border-gray-700"
-                        {...field}
-                      />
-                    </FormControl>
-
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button className="bg-white text-black hover:bg-gray-200">
-                Subscribe
-              </Button>
-            </form>
-          </Form> */}
         </div>
       </div>
 
       {/* Social Icons */}
       <div className="mt-10 text-center">
-        <div className="flex justify-center gap-4 mb-4">
+        <div className="flex justify-center gap-4 mb-2">
           <Button
             variant="ghost"
             size="icon"

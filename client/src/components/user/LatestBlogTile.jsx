@@ -30,7 +30,7 @@ const LatestBlogTile = ({ blogDetails }) => {
       </div>
       <div className="w-full">
         <div className="text-sm font-medium">{title}</div>
-        <div className="text-xs font-medium text-gray-700">
+        <div className="text-xs font-medium text-gray-500">
           By {blogDetails.user.name}
         </div>
         <div className="text-xs font-medium text-gray-500">

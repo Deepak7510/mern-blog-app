@@ -21,7 +21,7 @@ const CategoryListCard = () => {
         <CardTitle className={"text-base lg:text-lg font-medium"}>
           Categories
         </CardTitle>
-        <Separator className={"my-3 bg-gray-200 dark:bg-gray-800"} />
+        <Separator className={"my-2 bg-gray-200 dark:bg-gray-800"} />
         <div className="flex flex-row overflow-x-auto pb-4 md:flex-wrap gap-2 w-full">
           {loading ? (
             Array(10)

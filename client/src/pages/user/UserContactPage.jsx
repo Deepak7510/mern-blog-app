@@ -65,7 +65,7 @@ function UserContactPage() {
 
   return (
     <div className="sm:px-6 lg:px-10 xl:px-28 space-y-4">
-      <div className="text-lg text-center">
+      <div className="text-base text-center">
         If you have any questions regarding <strong>Sales</strong>,{" "}
         <strong>Billing</strong>, or <strong>Technical Support</strong>, please
         don't hesitate to get in touch with us.
@@ -125,7 +125,12 @@ function UserContactPage() {
                     </FormItem>
                   )}
                 />
-                <Button disabled={form.formState.isSubmitting} type="submit">
+                <Button
+                  className={"rounded-full px-10"}
+                  disabled={form.formState.isSubmitting}
+                  type="submit"
+                  size={"sm"}
+                >
                   Submit
                 </Button>
               </form>
@@ -133,7 +138,7 @@ function UserContactPage() {
           </div>
           <Separator className={"md:hidden my-6"} />
           <div className="md:border-l-1 p-2 md:p-10">
-            <h1 className="text-2xl font-bold mb-2">Contact Us</h1>
+            <h1 className="text-xl font-bold mb-2">Contact Us</h1>
             <div className="space-y-1">
               <p>Email: deepakkumaryadav75100@gmail.com</p>
               <p> Phone: +91 7510064500 </p>

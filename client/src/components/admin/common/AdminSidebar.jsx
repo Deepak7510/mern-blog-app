@@ -17,6 +17,7 @@ import {
   routeAdminManageDashBoard,
   routeAdminManageUser,
   routeAdminManageMessage,
+  RouteUserIndexBlogs,
 } from "@/helpers/route";
 import AppLogo from "@/components/common/AppLogo";
 
@@ -52,12 +53,14 @@ const AdminSidebar = () => {
   const navigate = useNavigate();
 
   function handleNavigate(getPath) {
-    navigate(getPath);
+    return navigate(getPath);
   }
   return (
     <Sidebar className={"shadow"}>
       <SidebarHeader className={"hidden md:block"}>
-        <AppLogo />
+        <Link to={RouteUserIndexBlogs}>
+          <AppLogo />
+        </Link>
       </SidebarHeader>
       <SidebarContent className={"bg-white dark:bg-neutral-950"}>
         <SidebarGroup>

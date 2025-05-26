@@ -16,6 +16,7 @@ import {
   RouteUserProfile,
   routeUserContact,
   routeAdminManageMessage,
+  routeUserAbout,
 } from "./helpers/route";
 import SignUp from "./pages/auth/SignUp";
 import SignIn from "./pages/auth/SignIn";
@@ -39,6 +40,7 @@ import CommonProfilePage from "./pages/common/CommonProfilePage";
 import UserContactPage from "./pages/user/UserContactPage";
 import ScrollToTop from "./components/common/ScrollToTop";
 import AdminMangeMessagePage from "./pages/admin/AdminMangeMessagePage";
+import UserAboutPage from "./pages/user/UserAboutPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -83,6 +85,7 @@ function App() {
           <Route path={RouteUserManageBlogs} element={<CommonBlogPage />} />
           <Route path={RouteUserProfile} element={<CommonProfilePage />} />
           <Route path={routeUserContact} element={<UserContactPage />} />
+          <Route path={routeUserAbout} element={<UserAboutPage />} />
           <Route
             path={RouteUserBlogByCategory()}
             element={<UserBlogByCategory />}

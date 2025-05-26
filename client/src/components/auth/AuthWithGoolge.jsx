@@ -28,7 +28,7 @@ const AuthWithGoolge = () => {
         toast.success(data.payload.message);
         const token = JSON.parse(sessionStorage.getItem("token"));
         dispatch(checkAuth(token));
-        navigate("/");
+        return navigate("/");
       } else {
         toast.error(data.payload.message);
       }

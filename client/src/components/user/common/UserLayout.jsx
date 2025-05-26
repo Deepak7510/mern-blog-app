@@ -7,7 +7,7 @@ const UserLayout = () => {
   return (
     <>
       <UserHeader />
-      <main className="px-1 lg:px-6 xl:px-12 max-w-[1400px] pt-15 mx-auto">
+      <main className="px-2 lg:px-6 xl:px-12 max-w-[1400px] pt-18 mx-auto">
         <Outlet />
       </main>
       <UserFooter />

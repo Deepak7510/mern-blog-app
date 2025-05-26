@@ -40,6 +40,7 @@ const SignIn = () => {
       const token = JSON.parse(sessionStorage.getItem("token"));
       dispatch(checkAuth(token));
       navigate("/");
+      return;
     } else {
       toast.error(result.payload.message);
     }

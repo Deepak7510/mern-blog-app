@@ -198,7 +198,7 @@ const CommonBlogPage = () => {
           </CardTitle>
           <Button
             size={"sm"}
-            className={"w-fit"}
+            className={"w-fit rounded-full px-4"}
             onClick={() => setOpenBlogDialog(true)}
           >
             Add New Blog

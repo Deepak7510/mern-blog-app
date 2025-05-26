@@ -23,12 +23,7 @@ const route = express.Router();
 
 route.post("/", isAuthenticated, upload.single("thumbnail"), createBlog);
 route.get("/", getBlogsList);
-route.delete(
-  "/:blogId",
-  upload.single("thumbnail"),
-  isAuthenticated,
-  deleteBlog
-);
+route.delete("/:blogId", isAuthenticated, deleteBlog);
 route.put("/:blogId", upload.single("thumbnail"), isAuthenticated, updateBlog);
 route.put(
   "/update-active-status/:blogId",

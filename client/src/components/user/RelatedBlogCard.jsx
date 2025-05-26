@@ -19,7 +19,7 @@ const RelatedBlogCard = ({ categorySlug, blogSlug }) => {
         <CardTitle className={"text-base lg:text-lg font-medium"}>
           Raleted Blogs
         </CardTitle>
-        <Separator className={"my-3 bg-gray-200 dark:bg-gray-800"} />
+        <Separator className={"my-2 bg-gray-200 dark:bg-gray-800"} />
         {loading ? (
           ""
         ) : raletedBlogList && raletedBlogList.length > 0 ? (

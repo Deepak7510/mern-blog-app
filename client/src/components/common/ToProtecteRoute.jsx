@@ -3,6 +3,7 @@ import {
   RouteSignIn,
   RouteUserIndexBlogs,
   RouteUserManageBlogs,
+  RouteUserProfile,
   //   RouteUsers,
 } from "@/helpers/route";
 import React from "react";
@@ -21,7 +22,8 @@ const ToProtecteRoute = ({ user, isAuthenticated, children }) => {
   if (
     !isAuthenticated &&
     (location.pathname.includes("/admin") ||
-      location.pathname == RouteUserManageBlogs)
+      location.pathname == RouteUserManageBlogs ||
+      location.pathname === RouteUserProfile)
   ) {
     return <Navigate to={RouteSignIn} />;
   }

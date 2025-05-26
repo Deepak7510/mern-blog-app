@@ -72,7 +72,7 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
             </div>
           </div>
 
-          <div className="text-base font-medium font-sans text-gray-800 truncate">
+          <div className="text-base font-medium font-sans truncate">
             {title}
           </div>
           <div className="flex gap-1 items-center font-medium">

@@ -17,7 +17,7 @@ const UserHomePage = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center my-2.5">
+      <div className="flex justify-between items-center mb-2.5">
         <h1 className="text-lg md:text-xl font-bold">All Blog</h1>
         <div className="hidden md:flex gap-3 items-center  ">
           <div className="text-base font-medium text-gray-600">View :</div>
@@ -43,7 +43,7 @@ const UserHomePage = () => {
         className={`grid grid-cols-1 lg:grid-cols-3 lg:gap-4 gap-2 md:gap-4 xl:gap-6`}
       >
         <div className="md:col-span-2">
-          <div className="mb-4 lg:hidden">
+          <div className="mb-3 lg:hidden">
             <CategoryListCard />
           </div>
           <div

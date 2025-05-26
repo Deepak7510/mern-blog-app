@@ -39,7 +39,7 @@ const SignUp = () => {
     if (result.payload.success) {
       toast.success(result.payload.message);
       form.reset();
-      navigate("/sign-in");
+      return navigate("/sign-in");
     } else {
       toast.error(result.payload.message);
     }

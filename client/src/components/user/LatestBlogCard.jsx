@@ -16,7 +16,7 @@ const LatestBlogCard = () => {
         <CardTitle className={"text-base lg:text-lg font-medium"}>
           Latest Blogs
         </CardTitle>
-        <Separator className={"my-3 bg-gray-200 dark:bg-gray-800"} />
+        <Separator className={"my-2 bg-gray-200 dark:bg-gray-800"} />
         <div>
           {loading ? (
             ""

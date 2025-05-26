@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import {
+  routeAdminManageDashBoard,
   RouteSignIn,
   RouteUserIndexBlogs,
   RouteUserManageBlogs,
@@ -68,6 +69,11 @@ export const TopbarRightSide = () => {
             <DropdownMenuItem asChild>
               <Link to={RouteUserManageBlogs}>Manage blog</Link>
             </DropdownMenuItem>
+            {user?.role === "admin" ? (
+              <DropdownMenuItem asChild>
+                <Link to={routeAdminManageDashBoard}>Admin Dashboard</Link>
+              </DropdownMenuItem>
+            ) : null}
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut /> Logout
             </DropdownMenuItem>

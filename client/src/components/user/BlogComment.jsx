@@ -16,8 +16,8 @@ import toast from "react-hot-toast";
 import useFetch from "@/helpers/useFetch";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { commentSchema } from "@/helpers/Validation";
-import { Separator } from "../ui/separator";
 import { Trash } from "lucide-react";
+import { RouteSignIn } from "@/helpers/route";
 const BlogComment = ({ blogId }) => {
   const navigate = useNavigate();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -40,9 +40,9 @@ const BlogComment = ({ blogId }) => {
 
   async function onSubmit(value) {
     if (!isAuthenticated) {
-      navigate("/sign-in");
+      return navigate(RouteSignIn);
     }
-    const formData = { ...value, userId: user._id, blogId };
+    const formData = { ...value, userId: user?._id, blogId };
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
@@ -64,7 +64,7 @@ const BlogComment = ({ blogId }) => {
       form.reset();
       getData();
     } catch (error) {
-      console.err(error);
+      console.error(error);
       toast.success(result.message);
     }
   }
@@ -159,7 +159,9 @@ const BlogComment = ({ blogId }) => {
                         {new Date(item.createdAt).toLocaleDateString()}
                       </span>{" "}
                     </div>
-                    <div className="text-base">{item.comment}</div>
+                    <div className="text-base text-gray-600 dark:text-gray-500">
+                      {item.comment}
+                    </div>
                   </div>
                 </div>
                 {user && user._id === item.user._id ? (
@@ -175,7 +177,7 @@ const BlogComment = ({ blogId }) => {
             );
           })
         ) : (
-          <div>No Commnet</div>
+          <div className="text-xs font-medium">No Commnet</div>
         )}
       </div>
     </div>

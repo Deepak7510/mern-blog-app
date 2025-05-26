@@ -10,7 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSidebar } from "@/components/ui/sidebar";
-import { RouteSignIn } from "@/helpers/route";
+import {
+  RouteSignIn,
+  RouteUserManageBlogs,
+  RouteUserProfile,
+} from "@/helpers/route";
 import { logoutUser, resetTokenAndCredantial } from "@/redux/auth-slice";
 import { AlignJustify, LogOut } from "lucide-react";
 import React from "react";
@@ -43,7 +47,7 @@ const AdminTopbar = () => {
         <ModeToggle />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Avatar className={"w-11.5 h-11.5"}>
+            <Avatar className={"w-10 h-10"}>
               {user && user?.avatar ? (
                 <AvatarImage src={user.avatar} className={"object-cover"} />
               ) : (
@@ -59,13 +63,11 @@ const AdminTopbar = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              {/* <Link to={RouteUserProfile}>Profile</Link> */}
+              <Link to={RouteUserProfile}>Profile</Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              {/* <Link to={RouteUserManageBlogs}>Manage blog</Link> */}
+              <Link to={RouteUserManageBlogs}>Manage blog</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>Billing</DropdownMenuItem>
-            <DropdownMenuItem asChild>Team</DropdownMenuItem>
             <DropdownMenuItem onClick={handleLogout}>
               <LogOut /> Logout
             </DropdownMenuItem>
