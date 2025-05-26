@@ -27,7 +27,6 @@ import {
 import toast from "react-hot-toast";
 import { ModeToggle } from "@/components/common/mode-toggle";
 import AppLogo from "@/components/common/AppLogo";
-import { useTheme } from "@/components/common/theme-provider";
 
 export const TopbarRightSide = () => {
   const dispatch = useDispatch();

@@ -1,20 +1,7 @@
-import appLogo from "../../../assets/appLogo.svg";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   routeUserAbout,
   routeUserContact,
@@ -22,33 +9,7 @@ import {
 } from "@/helpers/route";
 import AppLogo from "@/components/common/AppLogo";
 
-const formSchema = z.object({
-  email: z
-    .string()
-    .nonempty("Email is required.")
-    .email("Invalid email provider"),
-});
 export default function UserFooter() {
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  // const form = useForm({
-  //   resolver: zodResolver(formSchema),
-  //   defaultValues: {
-  //     email: "",
-  //   },
-  // });
-
-  // async function onSubmit(formData) {
-  //   const result = await instructorCreateNewsLetterService(formData);
-  //   if (result.success) {
-  //     // toast.success(result.message);
-  //     form.reset();
-  //   } else {
-  //     // toast.error(result.message);
-  //     form.reset();
-  //   }
-  // }
-
   return (
     <footer className="py-6 mt-10 bg-neutral-100 dark:bg-neutral-950 border-t border-gray-200 dark:border-gray-800">
       <div className="px-6 md:px-20 grid md:grid-cols-3 sm:grid-cols-2 gap-6 md:gap-20">
