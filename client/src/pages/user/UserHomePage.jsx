@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import BlogCardTile from "@/components/user/BlogCardTile";
+import BlogCardTileSkeleton from "@/components/user/BlogCardTileSkeleton";
 import CategoryListCard from "@/components/user/CategoryListCard";
 import LatestBlogCard from "@/components/user/LatestBlogCard";
 import useFetch from "@/helpers/useFetch";
@@ -56,7 +57,13 @@ const UserHomePage = () => {
             } gap-3.5`}
           >
             {loading ? (
-              <div>ff</div>
+              Array(10)
+                .fill(null)
+                .map((_, index) => {
+                  return (
+                    <BlogCardTileSkeleton key={index} cardLayout={cardLayout} />
+                  );
+                })
             ) : allBlogsList && allBlogsList.length > 0 ? (
               allBlogsList.map((item) => {
                 return (

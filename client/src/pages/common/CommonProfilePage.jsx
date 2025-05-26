@@ -95,7 +95,7 @@ const CommonProfilePage = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         {loading ? (
           <Card>
             <CardHeader className={"flex justify-center items-center w-full"}>

@@ -39,13 +39,13 @@ import useFetch from "@/helpers/useFetch";
 import { Label } from "@/components/ui/label";
 import { Cloud, XIcon } from "lucide-react";
 import { useSelector } from "react-redux";
-import BlogTableRowLoading from "@/components/user/BlogTableRowLoading";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { blogSchema } from "@/helpers/Validation";
 import Loading2 from "@/components/common/Loading2";
 import "react-quill-new/dist/quill.snow.css";
 import CustomEditor from "@/components/common/TextEditer";
 import BlogTableRow from "@/components/common/BlogTableRow";
+import BlogTableRowSkeleton from "@/components/common/BlogTableRowSkeleton";
 
 const CommonBlogPage = () => {
   const { user } = useSelector((state) => state.auth);
@@ -359,7 +359,7 @@ const CommonBlogPage = () => {
               Array(10)
                 .fill(null)
                 .map((_, index) => {
-                  return <BlogTableRowLoading key={index} />;
+                  return <BlogTableRowSkeleton key={index} />;
                 })
             ) : data?.length > 0 ? (
               data.map((item) => (

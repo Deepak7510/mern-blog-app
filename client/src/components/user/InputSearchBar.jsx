@@ -9,6 +9,7 @@ import {
 import useFetch from "@/helpers/useFetch";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import SearchBlogTile from "./SearchBlogTile";
+import LatestBlogTileSkeleton from "./LatestBlogTileSkeleton";
 
 const InputSearchBar = () => {
   const [openSearchListSheet, setOpenSearchListSheet] = useState(false);
@@ -39,18 +40,23 @@ const InputSearchBar = () => {
             <SheetTitle>Search Result: {query}</SheetTitle>
           </SheetHeader>
           <ScrollArea className="h-full rounded-md border p-2">
-            {searchLoading && <p className="mt-4">Loading...</p>}
-
-            {!searchLoading && blogSearchList?.length > 0
-              ? blogSearchList.map((item, index) => (
-                  <SearchBlogTile
-                    key={index}
-                    setOpenSearchListSheet={setOpenSearchListSheet}
-                    blogDetails={item}
-                  />
-                ))
-              : !searchLoading &&
-                query && <p className="mt-4 text-muted">No results found.</p>}
+            {searchLoading ? (
+              Array(8)
+                .fill(null)
+                .map((_, index) => {
+                  return <LatestBlogTileSkeleton key={index} />;
+                })
+            ) : blogSearchList && blogSearchList?.length > 0 ? (
+              blogSearchList.map((item, index) => (
+                <SearchBlogTile
+                  key={index}
+                  setOpenSearchListSheet={setOpenSearchListSheet}
+                  blogDetails={item}
+                />
+              ))
+            ) : (
+              <p className="mt-4 text-muted">No results found.</p>
+            )}
           </ScrollArea>
         </SheetContent>
       </Sheet>

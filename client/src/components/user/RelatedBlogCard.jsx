@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import useFetch from "@/helpers/useFetch";
 import LatestBlogTile from "./LatestBlogTile";
 import { Separator } from "../ui/separator";
+import LatestBlogTileSkeleton from "./LatestBlogTileSkeleton";
 
 const RelatedBlogCard = ({ categorySlug, blogSlug }) => {
   const { data: raletedBlogList, loading } = useFetch(
@@ -21,7 +22,11 @@ const RelatedBlogCard = ({ categorySlug, blogSlug }) => {
         </CardTitle>
         <Separator className={"my-2 bg-gray-200 dark:bg-gray-800"} />
         {loading ? (
-          ""
+          Array(8)
+            .fill(null)
+            .map((_, index) => {
+              return <LatestBlogTileSkeleton key={index} />;
+            })
         ) : raletedBlogList && raletedBlogList.length > 0 ? (
           raletedBlogList.map((item) => {
             return <LatestBlogTile blogDetails={item} key={item._id} />;

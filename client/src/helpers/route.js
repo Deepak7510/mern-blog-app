@@ -27,5 +27,4 @@ export const routeAdminManageCategory = "/admin/manage-category";
 export const routeAdminManageDashBoard = "/admin/manage-dashboard";
 export const routeAdminManageUserBlog = "/admin/manage-user-blogs";
 export const routeAdminManageUser = "/admin/manage-user";
-export const routeAdminManageComment = "/admin/manage-comment";
 export const routeAdminManageMessage = "/admin/manage-message";

@@ -5,6 +5,7 @@ import BlogComment from "@/components/user/BlogComment";
 import BlogLike from "@/components/user/BlogLike";
 import CategoryListCard from "@/components/user/CategoryListCard";
 import RelatedBlogCard from "@/components/user/RelatedBlogCard";
+import UserBlogDetailsCardSkeleton from "@/components/user/UserBlogDetailsCardSkeleton";
 import useFetch from "@/helpers/useFetch";
 import { format } from "date-fns";
 import React from "react";
@@ -34,11 +35,11 @@ const UserBlogDetailsPage = () => {
         <div className="mb-3 lg:hidden">
           <CategoryListCard />
         </div>
-        <Card>
-          <CardContent>
-            {loading ? (
-              ""
-            ) : blogDetails ? (
+        {loading ? (
+          <UserBlogDetailsCardSkeleton />
+        ) : blogDetails ? (
+          <Card>
+            <CardContent>
               <div>
                 <div className="flex justify-between items-center">
                   <div className="flex gap-4">
@@ -93,11 +94,13 @@ const UserBlogDetailsPage = () => {
                 <Separator className={"my-4"} />
                 <BlogComment blogId={blogDetails?._id} />
               </div>
-            ) : (
-              <div>Blog not found</div>
-            )}
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card>
+            <CardContent>Blog not found</CardContent>
+          </Card>
+        )}
       </div>
       <div className="space-y-3">
         <div className="hidden lg:block">

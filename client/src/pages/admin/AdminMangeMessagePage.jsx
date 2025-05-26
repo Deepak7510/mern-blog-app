@@ -12,6 +12,7 @@ import {
 import useFetch from "@/helpers/useFetch";
 import UserTableRowLoading from "@/components/admin/UserTableRowLoading";
 import MessageTableRow from "@/components/admin/MessageTableRow";
+import MessageTableRowSkeleton from "@/components/admin/MessageTableRowSkeleton";
 
 const AdminMangeMessagePage = () => {
   const { getData, data, loading } = useFetch(
@@ -39,7 +40,7 @@ const AdminMangeMessagePage = () => {
               Array(10)
                 .fill(null)
                 .map((_, index) => {
-                  return <UserTableRowLoading key={index} />;
+                  return <MessageTableRowSkeleton key={index} />;
                 })
             ) : data && data?.length > 0 ? (
               data.map((item) => (

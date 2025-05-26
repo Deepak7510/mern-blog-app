@@ -80,6 +80,7 @@ const BlogComment = ({ blogId }) => {
             "Content-type": "application/json",
             authorization: `Bearer ${token}`,
           },
+          credentials: "include",
         }
       );
 

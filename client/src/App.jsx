@@ -4,13 +4,11 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import {
   routeAdminManageUserBlog,
   routeAdminManageCategory,
-  routeAdminManageComment,
   routeAdminManageDashBoard,
   RouteSignIn,
   RouteSignUp,
   RouteUserBlogByCategory,
   RouteUserBlogDetails,
-  RouteUserIndexBlogs,
   RouteUserManageBlogs,
   routeAdminManageUser,
   RouteUserProfile,
@@ -30,7 +28,6 @@ import { checkAuth } from "./redux/auth-slice";
 import AdminLayout from "./components/admin/common/AdminLayout";
 import AdminCategoryPage from "./pages/admin/AdminCategoryPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
-import AdminManageCommentPage from "./pages/admin/AdminManageCommentPage";
 import ToProtecteRoute from "./components/common/ToProtecteRoute";
 import Loading from "./components/common/Loading";
 import AdminUserBlogPage from "./pages/admin/AdminUserBlogPage";
@@ -113,10 +110,6 @@ function App() {
           <Route
             path={routeAdminManageCategory}
             element={<AdminCategoryPage />}
-          />
-          <Route
-            path={routeAdminManageComment}
-            element={<AdminManageCommentPage />}
           />
           <Route
             path={routeAdminManageUserBlog}

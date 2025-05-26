@@ -1,9 +1,8 @@
 import React from "react";
 import { TableCell, TableRow } from "../ui/table";
 import { Skeleton } from "../ui/skeleton";
-import { Avatar } from "../ui/avatar";
 
-const UserTableRowLoading = () => {
+const MessageTableRowSkeleton = () => {
   return (
     <TableRow>
       <TableCell>
@@ -13,18 +12,16 @@ const UserTableRowLoading = () => {
         <Skeleton className="w-32 h-4" />
       </TableCell>
       <TableCell>
-        <Avatar className="w-11.5 h-11.5">
-          <Skeleton className="w-full h-full rounded-full" />
-        </Avatar>
+        <Skeleton className="w-32 h-4" />
       </TableCell>
       <TableCell>
         <Skeleton className="w-20 h-4" />
       </TableCell>
       <TableCell className="space-x-2">
-        <Skeleton className="w-8 h-5 rounded-full" />
+        <Skeleton className="w-8 h-8 rounded-md" />
       </TableCell>
     </TableRow>
   );
 };
 
-export default UserTableRowLoading;
+export default MessageTableRowSkeleton;
