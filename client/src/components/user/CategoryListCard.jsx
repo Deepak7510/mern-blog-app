@@ -27,12 +27,18 @@ const CategoryListCard = () => {
             Array(10)
               .fill(null)
               .map((_, index) => {
-                return <Skeleton className={"px-6 w-40 h-8 rounded-full"} />;
+                return (
+                  <Skeleton
+                    key={index}
+                    className={"px-6 w-40 h-8 rounded-full"}
+                  />
+                );
               })
           ) : categoryData && categoryData.length > 0 ? (
             categoryData.map((item) => {
               return (
                 <Button
+                  key={item._id}
                   onClick={() => navigate(RouteUserBlogByCategory(item.slug))}
                   variant={"outline"}
                   size={"sm"}

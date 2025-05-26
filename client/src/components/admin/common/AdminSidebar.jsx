@@ -68,7 +68,7 @@ const AdminSidebar = () => {
             {SidebarAllRoute && SidebarAllRoute.length > 0
               ? SidebarAllRoute.map((item) => {
                   return (
-                    <SidebarMenuItem>
+                    <SidebarMenuItem key={item.label}>
                       <SidebarMenuButton
                         onClick={() => handleNavigate(item.path)}
                       >

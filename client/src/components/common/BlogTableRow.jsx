@@ -23,13 +23,14 @@ function DeleteButton({ blogId, getData }) {
     try {
       const token = JSON.parse(sessionStorage.getItem("token"));
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/blog/delete/${getBlogId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/blogs/${getBlogId}`,
         {
           method: "DELETE",
           headers: {
             authorization: `Bearer ${token}`,
             "Content-type": "application/json",
           },
+          credentials: "include",
         }
       );
 
