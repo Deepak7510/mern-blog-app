@@ -34,7 +34,7 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
       >
         <div
           className={`h-56 ${
-            cardLayout === 2 ? "w-full" : "w-96"
+            cardLayout === 2 ? "w-full" : "w-1/2"
           } rounded-lg overflow-hidden`}
         >
           <img
@@ -43,7 +43,7 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="p-2 space-y-0.5">
+        <div className="p-2 space-y-0.5 w-1/2">
           <div className="flex gap-2 items-center">
             <Avatar className={"w-8 h-8"}>
               {blogDetails && blogDetails?.user.avatar ? (
