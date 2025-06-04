@@ -43,7 +43,9 @@ const BlogCardTile = ({ blogDetails, cardLayout }) => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="p-2 space-y-0.5 w-1/2">
+        <div
+          className={`p-2 space-y-0.5 ${cardLayout === 2 ? "w-full" : "w-1/2"}`}
+        >
           <div className="flex gap-2 items-center">
             <Avatar className={"w-8 h-8"}>
               {blogDetails && blogDetails?.user.avatar ? (
