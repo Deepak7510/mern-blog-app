@@ -44,7 +44,7 @@ const CategoryListCard = () => {
                   size={"sm"}
                   className={`rounded-full text-xs ${
                     category && category === item.slug
-                      ? "bg-black text-white hover:bg-black hover:text-white"
+                      ? "bg-black dark:bg-white dark:text-black dark:hover:bg-white dark:hover:text-black text-white hover:bg-black hover:text-white"
                       : ""
                   } `}
                 >
