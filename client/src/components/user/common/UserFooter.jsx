@@ -15,7 +15,7 @@ export default function UserFooter() {
       <div className="px-6 md:px-20 grid md:grid-cols-3 sm:grid-cols-2 gap-6 md:gap-20">
         {/* Branding */}
         <div>
-          <Link to={"/user/index-blogs"}>
+          <Link to={RouteUserIndexBlogs}>
             <AppLogo />
           </Link>
           <p className="text-sm font-medium mt-2 leading-relaxed">
