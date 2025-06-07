@@ -7,7 +7,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { LayoutDashboard } from "lucide-react";
+import {
+  BlocksIcon,
+  LayoutDashboard,
+  List,
+  MessageCircle,
+  User,
+} from "lucide-react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -29,22 +35,22 @@ const SidebarAllRoute = [
   {
     label: "Manage Categories",
     path: routeAdminManageCategory,
-    icon: <LayoutDashboard />,
+    icon: <List />,
   },
   {
     label: "User Blogs",
     path: routeAdminManageUserBlog,
-    icon: <LayoutDashboard />,
+    icon: <BlocksIcon />,
   },
   {
     label: "Manage Users",
     path: routeAdminManageUser,
-    icon: <LayoutDashboard />,
+    icon: <User />,
   },
   {
     label: "User Messages",
     path: routeAdminManageMessage,
-    icon: <LayoutDashboard />,
+    icon: <MessageCircle />,
   },
 ];
 

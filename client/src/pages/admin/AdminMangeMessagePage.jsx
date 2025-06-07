@@ -48,7 +48,7 @@ const AdminMangeMessagePage = () => {
               ))
             ) : (
               <TableRow>
-                <TableCell>No Comments</TableCell>
+                <TableCell>No messages</TableCell>
               </TableRow>
             )}
           </TableBody>

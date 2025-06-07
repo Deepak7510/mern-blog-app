@@ -12,12 +12,5 @@ export default function CustomEditor({ field }) {
     ],
   };
 
-  return (
-    <ReactQuill
-      {...field}
-      modules={modules}
-      theme="snow"
-      className="bg-white"
-    />
-  );
+  return <ReactQuill {...field} modules={modules} theme="snow" />;
 }
