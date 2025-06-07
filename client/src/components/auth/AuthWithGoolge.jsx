@@ -60,7 +60,7 @@ const AuthWithGoolge = () => {
       </div>
       <div className=" relative my-2">
         <Separator />
-        <div className="bg-white absolute transform select-none translate-y-[-50%] translate-x-[-50%] top-[50%] left-[50%]">
+        <div className="bg-white dark:bg-neutral-950 absolute transform select-none translate-y-[-50%] translate-x-[-50%] top-[50%] left-[50%]">
           Or
         </div>
       </div>

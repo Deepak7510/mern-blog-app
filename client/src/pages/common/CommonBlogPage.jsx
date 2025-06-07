@@ -138,6 +138,7 @@ const CommonBlogPage = () => {
         headers: {
           authorization: `Bearer ${token}`,
         },
+        credentials: "include",
         body: newFormData,
       });
 
